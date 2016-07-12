@@ -15,13 +15,13 @@ var faileName = process.argv[2];
 // meibo.csv(Shift_JIS)を読み込む
 var inputData = CSV.readFileSync(faileName, 'sjis');
 
-var MY_EVENT = 2 //ループの止める定数
-var SetHTML = "";
-
+var MY_YEAR = 0, //CSVデータの年代　行
+    MY_EVENT = 1, //CSVデータの出来事　行
+    SetHTML = "";　//生成したHTMLタグを格納する文字列
 
 for(var i=1; i<inputData.length;i++){
-      SetHTML += "\n<tr>\n\t<td class=\"year\">" + inputData[i][0] + "</td>";
-      SetHTML += "\n\t<td>" + inputData[i][1] + "</td>\n</tr>";
+      SetHTML += "\n<tr>\n\t<td class=\"year\">" + inputData[i][MY_YEAR] + "</td>";
+      SetHTML += "\n\t<td>" + inputData[i][MY_EVENT] + "</td>\n</tr>";
 }
 
 console.log(SetHTML);
